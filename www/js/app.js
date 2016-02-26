@@ -41,6 +41,7 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
       controller: "RegisterCtrl"
     })
     .state('lobby', {
+       cache:false,
       url: '/lobby',
       templateUrl: 'templates/lobby.html',
       controller: 'LobbyCtrl'
@@ -67,6 +68,11 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
     controller: "ResultsCtrl",
     
     
+  })
+    .state('history', {
+    url: '/history',
+    templateUrl: 'templates/history.html',
+    controller:'HistoryCtrl'
   });
 
 });
