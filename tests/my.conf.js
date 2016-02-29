@@ -8,8 +8,13 @@ module.exports = function(config) {
     basePath: '',
     
     
-// list of files / patterns to load in the browser
-files: [
+    // frameworks to use
+    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
+    frameworks: ['jasmine'],
+
+
+    // list of files / patterns to load in the browser
+  files: [
 '../www/lib/ionic/js/ionic.bundle.js',
       '../www/js/*.js',
       '../www/lib/angular-mocks/angular-mocks.js',
@@ -17,13 +22,6 @@ files: [
 ],
 
 
-    // frameworks to use
-    // available frameworks: https://npmjs.org/browse/keyword/karma-adapter
-    frameworks: ['jasmine'],
-
-
-    // list of files / patterns to load in the browser
-  
 
     // list of files to exclude
     exclude: [
