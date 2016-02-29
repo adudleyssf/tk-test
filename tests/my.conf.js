@@ -6,6 +6,15 @@ module.exports = function(config) {
 
     // base path that will be used to resolve all patterns (eg. files, exclude)
     basePath: '',
+    
+    
+// list of files / patterns to load in the browser
+files: [
+'../www/lib/ionic/js/ionic.bundle.js',
+      '../www/js/*.js',
+      '../www/lib/angular-mocks/angular-mocks.js',
+      '**/*tests.js'
+],
 
 
     // frameworks to use
@@ -14,9 +23,7 @@ module.exports = function(config) {
 
 
     // list of files / patterns to load in the browser
-    files: [
-    ],
-
+  
 
     // list of files to exclude
     exclude: [
@@ -54,7 +61,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-    browsers: [],
+    browsers: ['PhantomJS'],
 
 
     // Continuous Integration mode
