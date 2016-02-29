@@ -24,7 +24,7 @@ describe('Services', function() {
     //Inject the scope and save it in a variable
    beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
-        $controller('LoginCtrl', {$scope: scope});
+        $service('SortArray', {$scope: scope});
     }));
     // tests start here
     it('Array should be the same', function(){
