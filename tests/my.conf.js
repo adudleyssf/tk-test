@@ -1,5 +1,5 @@
 // Karma configuration
-// Generated on Mon Feb 29 2016 18:41:39 GMT+0000 (UTC)
+// Generated on Mon Feb 29 2016 19:17:11 GMT+0000 (UTC)
 
 module.exports = function(config) {
   config.set({
@@ -15,14 +15,7 @@ module.exports = function(config) {
 
     // list of files / patterns to load in the browser
     files: [
-'../www/lib/ionic/js/ionic.bundle.js',
-      '../www/js/*.js',
-      '../www/lib/angular-mocks/angular-mocks.js',
-      '**/*tests.js'
     ],
-
-  // Use the PhantomJS browser instead of Chrome
-  browsers: ['PhantomJS'],
 
 
     // list of files to exclude
@@ -61,7 +54,7 @@ module.exports = function(config) {
 
     // start these browsers
     // available browser launchers: https://npmjs.org/browse/keyword/karma-launcher
-   
+    browsers: [],
 
 
     // Continuous Integration mode
@@ -71,5 +64,5 @@ module.exports = function(config) {
     // Concurrency level
     // how many browser should be started simultaneous
     concurrency: Infinity
-  });
-};
+  })
+}
