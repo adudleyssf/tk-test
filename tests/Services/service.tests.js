@@ -28,6 +28,6 @@ describe('Services', function() {
     }));
     // tests start here
     it('Array should be the same', function(){
-        expect($SortServices.SortArray).toEqual(1, 7, 2);
+        expect($SortServices.sort).toEqual(1, 7, 2);
     });
 });
