@@ -17,16 +17,18 @@ describe('Services', function() {
     var sorty;
     // load the controller's module
     beforeEach(module('ionic'));
-    beforeEach(module('starter.controllers'));
-    beforeEach(module('RESTConnection'));
+ 
     beforeEach(module("SortServices"));
     
     //Inject the scope and save it in a variable
-   beforeEach(inject(function(SortArray) {
-        var sorty = SortArray;
+   beforeEach(inject(function(sortArrayService) {
+         sorty = sortArrayService;
     }));
     // tests start here
     it('Array should be the same', function(){
-        expect(sorty).toEqual();
+        var newArray = [7, 1, 2];
+        var sortedarray = [7, 1, 2];
+        var sorted = sorty.sortArray(newArray);
+        expect(sortedarray).toEqual(sorted);
     });
 });
