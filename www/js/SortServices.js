@@ -1,9 +1,10 @@
 angular.module('SortServices', [])
-    .service('sortArrayService', function(array) {
-        var sort = [1, 7, 2];
+    .service('sortArrayService', function() {
+        var service = this;
+        var sort = [];
         
-        service.sortArray=function(array){
-             return array;
+        service.sortArray=function(sort){
+             return sort;
              
              
         };
