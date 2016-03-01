@@ -24,10 +24,10 @@ describe('Services', function() {
     //Inject the scope and save it in a variable
    beforeEach(inject(function($rootScope, $controller) {
         scope = $rootScope.$new();
-        $service('SortArray', {$scope: scope});
+        $controller('LoginCtrl', {$scope: scope});
     }));
     // tests start here
     it('Array should be the same', function(){
-        expect(scope.sort).toEqual();
+        expect(scope.sort).toEqual(1, 7, 2);
     });
 });
