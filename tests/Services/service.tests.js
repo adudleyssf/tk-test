@@ -27,6 +27,6 @@ describe('Services', function() {
     }));
     // tests start here
     it('Array should be the same', function(){
-        expect(sorty).toEqual(1, 7, 2);
+        expect(sorty).toEqual();
     });
 });
