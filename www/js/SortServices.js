@@ -11,7 +11,7 @@ angular.module('SortServices', [])
 		            array.push(temp);
 		        }
             
-            return array;
+            
              */
            for (var i = 0; i < array.length; i++) {
             for (var i = 0; i < array.length; i++) {
@@ -20,9 +20,11 @@ angular.module('SortServices', [])
                     var temp2 = array[i++];
                     array[i] = temp2;
                     array[i++] = temp;
+                    
 
                     }
                 }
+                return array;
             }
         };
     });
