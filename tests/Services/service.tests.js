@@ -27,8 +27,9 @@ describe('Services', function() {
     // tests start here
     it('Array should be the same', function(){
         var newArray = [7, 1, 2];
-      
-        var sorted = sorty.sortArray(newArray);
+        var testArray = [1, 2, 7];
+        var sorted = sorty.sortArray(testArray);
+        
         expect(newArray).toEqual(sorted);
     });
 });
