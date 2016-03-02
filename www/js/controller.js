@@ -47,23 +47,19 @@ angular.module('starter.controllers', [])
                                 form.$setPristine();
                             }
 
-                            else {
-                                // invalid response
-                                SSFAlertsService.showAlert("Error", "Something went wrong, try again.");
-
-                            }
-                        }, function(response) {
-                            // Code 401 corresponds to Unauthorized access, in this case, the email/password combination was incorrect.
-                            if (response.status === 401) {
-                                SSFAlertsService.showAlert("Error", "Incorrect username or password");
+                            else if (response.status === 401) {
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.401");
                             }
                             else if (response.data === null) {
                                 //If the data is null, it means there is no internet connection.
-                                SSFAlertsService.showAlert("Error", "The connection with the server was unsuccessful, check your internet connection and try again later.");
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.NULL");
                             }
                             else {
-                                SSFAlertsService.showAlert("Error", "Something went wrong, try again.");
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.ELSE");
                             }
+
+
+
                         });
 
                 }
@@ -85,32 +81,24 @@ angular.module('starter.controllers', [])
 
                     UserService.create($scope.user)
                         .then(function(response) {
-                                if (response.status === 200) {
-                                    loginAfterRegister();
-                                    form.$setPristine();
-                                }
-                                else {
-                                    // invalid response
-                                    alert("Error", "Something went wrong, try again.");
-                                }
-                            },
-
-                            function(response) {
-                                // Code 401 corresponds to Unauthorized access, in this case, the email/password combination was incorrect.
-                                if (response.status === 401) {
-                                    alert("Incorrect username or password");
-                                }
-                                else if (response.data === null) {
-                                    //If the data is null, it means there is no internet connection.
-                                    alert("The connection with the server was unsuccessful, check your internet connection and try again later.");
-                                }
-                                else if (response.status === 422) {
-                                    alert("Email already in use");
-                                }
-                                else {
-                                    alert("Something went wrong");
-                                }
-                            });
+                            if (response.status === 200) {
+                                loginAfterRegister();
+                                form.$setPristine();
+                            }
+                            else if (response.status === 401) {
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.401");
+                            }
+                            else if (response.data === null) {
+                                //If the data is null, it means there is no internet connection.
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.NULL");
+                            }
+                            else if (response.status === 422) {
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.EMAIL_USED");
+                            }
+                            else {
+                                SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.INVALID_RESPONSE");
+                            }
+                        });
 
 
                 }
@@ -169,10 +157,10 @@ angular.module('starter.controllers', [])
                         $state.go('landing');
                     }
                     else {
-                        SSFAlertsService.showAlert("Error", "Could not logout at this moment, try again.");
+                        SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.NO_LOGOUT");
                     }
                 }, function(response) {
-                    SSFAlertsService.showAlert("Error", "Could not logout at this moment, try again.");
+                    SSFAlertsService.showAlert("SSFALERTS.TITLE", "SSFALERTS.NO_LOGOUT");
                 });
         };
 
@@ -198,7 +186,7 @@ angular.module('starter.controllers', [])
         }
 
         function confirmPrompt() {
-            SSFAlertsService.showConfirm("Error", "The questions could not be retrieved at this time, do you want to try again?")
+            SSFAlertsService.showConfirm("SSFCONFIRMS.TITLE", "SSFCONFIRMS.NO_QUESTION")
                 .then(function(response) {
                     if (response == true) {
                         getQuestions();
@@ -273,10 +261,10 @@ angular.module('starter.controllers', [])
                     confirmPrompt();
                 });
         }
-        TKResultsButtonService.setShouldShowMenuButton(true);
+
 
         function confirmPrompt() {
-            SSFAlertsService.showConfirm("Error", "The answers could not be saved at the moment, do you want to try again?")
+            SSFAlertsService.showConfirm("SSFCONFIRMS.TITLE", "SSFCONFIRMS.NO_SAVE")
                 .then(function(response) {
                     if (response == true) {
                         performRequest();
@@ -306,10 +294,20 @@ angular.module('starter.controllers', [])
     }
 ])
 
-.controller('ResultsCtrl', ['$scope', 'TKAnswersService', '$ionicHistory', '$state', "TKResultsButtonService",
-    function($scope, TKAnswersService, $ionicHistory, $state, TKResultsButtonService) {
+.controller('ResultsCtrl', ['$scope', 'TKAnswersService', '$ionicHistory', '$state', "TKResultsButtonService", "$translate",
+    function($scope, TKAnswersService, $ionicHistory, $state, TKResultsButtonService, $translate) {
         $scope.shouldShowButton = TKResultsButtonService.getShouldShowMenuButton();
         var answersInfo = TKAnswersService.getAnswers();
+
+      $scope.labelsTranslator = function(Competing, Collaborating, Compromising, Avoiding, Accommodating) {
+            $translate([Competing, Collaborating, Compromising, Avoiding, Accommodating])
+            .then(function(response) {
+                $scope.realLabels = [response[Competing], response[Collaborating], response[Compromising], response[Avoiding], response[Accommodating]] ;  
+            });
+        };
+        $scope.labelsTranslator("ANSWERS.COMPETING", "ANSWERS.COLLABORATING", "ANSWERS.COMPROMISING", "ANSWERS.AVOIDING", "ANSWERS.ACCOMMODATING");
+
+
 
         $scope.labels = ["Competing", "Collaborating", "Compromising", "Avoiding", "Accommodating"];
 
@@ -383,13 +381,13 @@ angular.module('starter.controllers', [])
         }
 
         function confirmPrompt() {
-            SSFAlertsService.showConfirm("Error", "The tests could not be retrieved at the moment, do you want to try again?")
+            SSFAlertsService.showConfirm("SSFCONFIRMS.TITLE", "SSFCONFIRMS.NO_RETRIEVE")
                 .then(function(response) {
                     if (response == true) {
                         performRequest();
                     }
-                })
-        };
+                });
+        }
 
         $scope.goToResult = function(test) {
             var answers = {

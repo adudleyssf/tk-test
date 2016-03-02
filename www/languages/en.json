@@ -1,0 +1,47 @@
+{
+    "GENERAL":{
+        "LOGIN": "Login",
+        "MENU": "Menu",
+        "MYRESULTS": "My Results"
+        
+    },
+    "LANDING": {
+        "TITLE": "T. K. Test",
+        "REGISTER": "Register"
+    },
+    "LOBBY": {
+        "LOGOUT": "Logout",
+        "TAKE_TEST": "Take test"
+    },
+    "LOGIN": {
+        "EMAIL": "Email",
+        "PASSWORD": "Password",
+        "REMEMBER_ME": "Remember me?"
+    },
+    "REGISTER": {
+        "SIGN_UP": "Sign up",
+        "RESULTS": "Results"
+    },
+    "SSFALERTS": {
+        "TITLE": "Error",
+        "INVALID_RESPONSE": "Something went wrong, try again.",
+        "401": "Incorrect username or password",
+        "NULL": "The connection with the server was unsuccessful, check your internet connection and try again later.",
+        "ELSE": "Something went wrong, try again.",
+        "EMAIL_USED": "Email already in use",
+        "NO_LOGOUT": "Could not logout at this moment, try again."
+    },
+     "SSFCONFIRMS": {
+        "TITLE": "Error",
+        "NO_QUESTION": "The questions could not be retrieved at this time, do you want to try again?",
+        "NO_SAVE": "The answers could not be saved at the moment, do you want to try again?",
+        "NO_RETRIEVE": "The tests could not be retrieved at the moment, do you want to try again?"
+    },
+    "ANSWERS":{
+        "COMPETING": "Competing",
+        "COLLABORATING": "Collaborating",
+        "COMPROMISING": "Compromising",
+        "AVOIDING": "Avoiding",
+        "ACCOMMODATING": "Acommodating"
+    }
+}

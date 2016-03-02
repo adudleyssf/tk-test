@@ -1,0 +1,33 @@
+{
+    "GENERAL":{
+        "LOGIN": "ログイン",
+        "MENU": "メニュー",
+        "MYRESULTS": "私の結果"
+        
+    },
+    "LANDING": {
+        "TITLE": "T. K. テスト",
+        "REGISTER": "登録"
+    },
+  "LOBBY": {
+        "LOGOUT": "ログオフ",
+        "TAKE_TEST": "テストを行います"
+    },
+    "LOGIN": {
+        "EMAIL": "Eメール",
+        "PASSWORD": "パスワード",
+        "REMEMBER_ME": "私を覚えていますか？"
+    },
+    "REGISTER": {
+        "SIGN_UP": "サインアップ",
+        "RESULTS": "結果"
+    },
+    "SSFALERTS": {
+        "TITLE": "エラー",
+        "INVALID_RESPONSE": "何かが間違っていた、再試行してください。",
+        "401": "不正なユーザ名またはパスワード",
+        "NULL": "サーバーへの接続には、インターネット接続を確認してから再度試して、成功しませんでした。",
+        "ELSE": "何かが間違っていた、再試行してください。"
+        
+    }
+}

@@ -1,12 +1,12 @@
-<ion-view view-title="Results">
+<ion-view view-title="{{'REGISTER.RESULTS' | translate}}">
     <ion-nav-buttons side="primary">
         <button class="button" ng-click="menuButtonTapped()" ng-show="shouldShowButton">
-            Menu
+            {{'GENERAL.MENU' | translate}}
         </button>
     </ion-nav-buttons>
     <ion-content class="padding">
 
-        <h1>Results</h1>
-        <canvas id="bar" class="chart chart-bar" data="data" labels="labels" options="options" height="300" colours="colours"></canvas>
+        <h1>{{'REGISTER.RESULTS' | translate}}</h1>
+        <canvas id="bar" class="chart chart-bar" data="data" labels="realLabels" options="options" height="300" colours="colours"></canvas>
     </ion-content>
 </ion-view>

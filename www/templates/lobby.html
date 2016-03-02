@@ -1,15 +1,15 @@
-<ion-view view-title="Menu">
+<ion-view view-title= "{{'GENERAL.MENU' | translate}}">
     <ion-nav-buttons side="left">
       <button class="button" ng-click="logout()">
-        Logout
+        {{'LOBBY.LOGOUT' | translate}}
       </button>
     </ion-nav-buttons>
     <ion-content class="padding">
       <button class="button button-block button-positive" ng-click="takeTestButtonTapped()">
-          Take test
+          {{'LOBBY.TAKE_TEST' | translate}}
         </button>
         <button class="button button-block button-positive" ui-sref="history">
-          My Results
+          {{'GENERAL.MYRESULTS' | translate}}
         </button>
     </ion-content>
 </ion-view>

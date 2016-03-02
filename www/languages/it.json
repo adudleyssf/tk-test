@@ -1,0 +1,48 @@
+{
+    "GENERAL":{
+        "LOGIN": "Accesso",
+        "MENU": "Menu",
+        "MYRESULTS": "I miei risultati"
+        
+    },
+    "LANDING": {
+        "TITLE": "T. K. prova",
+        "REGISTER": "Register"
+    },
+    "LOBBY": {
+        "LOGOUT": "Disconnettersi",
+        "TAKE_TEST": "Fare test"
+    },
+    "LOGIN": {
+        "EMAIL": "E-mail",
+        "PASSWORD": "parola d'ordine",
+        "REMEMBER_ME": "Ricordati di me?"
+    },
+    "REGISTER": {
+        "SIGN_UP": "Sign up",
+        "RESULTS": "risultati"
+    },
+    "SSFALERTS": {
+        "TITLE": "Errore",
+        "INVALID_RESPONSE": "Qualcosa è andato storto, riprovare.",
+        "401": "nome utente o password errati",
+        "NULL": "La connessione con il server non ha avuto successo, controllare la connessione a Internet e riprovare più tardi.",
+        "ELSE": "Qualcosa è andato storto , riprovare ."
+        "EMAIL_USED": "Email già in uso",
+        "NO_LOGOUT": "Impossibile il logout in questo momento , riprovare .",
+       
+    },
+      "SSFCONFIRMS": {
+        "TITLE": "Errore",
+        "NO_QUESTION": "Le domande non possono essere recuperati in questo momento , vuoi riprovare ?",
+        "NO_SAVE": "Le risposte non possono essere salvate in questo momento , vuoi riprovare ?",
+        "NO_RETRIEVE": "I test non possono essere recuperati in questo momento , vuoi riprovare ?"
+    },
+    "ANSWERS":{
+        "COMPETING": "Competere",
+        "COLLABORATING": "collaborare",
+        "COMPROMISING": "compromettere",
+        "AVOIDING": "evitando",
+        "ACCOMMODATING": "Accomodante"
+    }
+}
