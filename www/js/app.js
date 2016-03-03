@@ -3,7 +3,7 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TKServicesModule", "chart.js", "SSFAlerts", 'pascalprecht.translate'])
+angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TKServicesModule", "chart.js", "SSFAlerts", 'pascalprecht.translate', "tmh.dynamicLocale"])
 
 .run(["$ionicPlatform", "$window", "$state", function($ionicPlatform, $window, $state) {
   $ionicPlatform.ready(function() {
@@ -96,7 +96,27 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
         url: '/history',
         templateUrl: 'templates/history.html',
         controller: 'HistoryCtrl'
-      });
+      })
+       .state('navigation', {
+    url: '/navigation',
+    template:
+      '<ion-view hide-nav-bar="false">' +
+        '<ion-nav-buttons></ion-nav-buttons>' +
+        '<ion-content class="padding">' +
+          '<button class="button button-block button-calm" ng-repeat="nav in navLinks" ui-sref="{{nav}}">{{nav}}</button>' +
+        '</ion-content>' +
+      '</ion-view>',
+    controller: function($state, $scope) {
+      var stateArray = $state.get();
+      $scope.navLinks = [];
+      for(var i in stateArray) {
+        if(stateArray[i].name !== '' && stateArray[i].name !== 'navigation' && stateArray[i].name !== 'update') {
+          $scope.navLinks.push(stateArray[i].name);
+        }
+      }
+    }
+  });
+      
 
   }
 ])
@@ -133,4 +153,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
   $rootScope.$on('loading:hide', function() {
     $ionicLoading.hide();
   });
-}]);
+}])
+
+.config(function(tmhDynamicLocaleProvider) {
+  tmhDynamicLocaleProvider.localeLocationPattern("lib/angular-locale/angular-locale_{{locale}}.js");
+});
+

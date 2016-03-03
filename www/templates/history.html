@@ -2,7 +2,7 @@
     <ion-content>
         <ion-list>
           <ion-item ng-repeat="test in tests" ng-click="goToResult(test)">
-            Test {{$index+1}}
+            {{"GENERAL.TEST" | translate}} {{$index+1}}
             <span class="item-note">
               {{test.createDate | date:'dd-MMM-yyyy hh:mm a'}}
             </span>

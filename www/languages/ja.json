@@ -2,7 +2,8 @@
     "GENERAL":{
         "LOGIN": "ログイン",
         "MENU": "メニュー",
-        "MYRESULTS": "私の結果"
+        "MYRESULTS": "私の結果",
+        "TEST": "テスト"
         
     },
     "LANDING": {
@@ -43,6 +44,12 @@
         "COMPROMISING": "妥協",
         "AVOIDING": "回避",
         "ACCOMMODATING": "親切な"
+    },
+    "QUESTIONS":{
+        "OPTION_A": "オプションA",
+        "OPTION_B": "オプションB"
     }
+    
+    
     
 }

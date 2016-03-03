@@ -358,10 +358,18 @@ angular.module('starter.controllers', [])
     }
 ])
 
-.controller("HistoryCtrl", ["$scope", "ServerAnswersService", "$window", "$state", "TKAnswersService", "TKResultsButtonService", "SSFAlertsService",
-    function($scope, ServerAnswersService, $window, $state, TKAnswersService, TKResultsButtonService, SSFAlertsService) {
+.controller("HistoryCtrl", ["$scope", "ServerAnswersService", "$window", "$state", "TKAnswersService", "TKResultsButtonService", "SSFAlertsService", "tmhDynamicLocale",
+    function($scope, ServerAnswersService, $window, $state, TKAnswersService, TKResultsButtonService, SSFAlertsService, tmhDynamicLocale) {
         $scope.tests = [];
         performRequest();
+        
+              if(typeof navigator.globalization !== "undefined") {
+                navigator.globalization.getPreferredLanguage(function(language) {
+                    
+                    tmhDynamicLocale.set((language.value).split("-")[0]);
+                  
+                }, null);
+            }
 
         function performRequest() {
             ServerAnswersService.all($window.localStorage['userID'], $window.localStorage['token'])
@@ -379,6 +387,8 @@ angular.module('starter.controllers', [])
                     confirmPrompt();
                 });
         }
+        
+        
 
         function confirmPrompt() {
             SSFAlertsService.showConfirm("SSFCONFIRMS.TITLE", "SSFCONFIRMS.NO_RETRIEVE")

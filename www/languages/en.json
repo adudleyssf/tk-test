@@ -2,7 +2,8 @@
     "GENERAL":{
         "LOGIN": "Login",
         "MENU": "Menu",
-        "MYRESULTS": "My Results"
+        "MYRESULTS": "My Results",
+        "TEST": "Test"
         
     },
     "LANDING": {
@@ -43,5 +44,10 @@
         "COMPROMISING": "Compromising",
         "AVOIDING": "Avoiding",
         "ACCOMMODATING": "Acommodating"
+    },
+    "QUESTIONS":{
+        "OPTION_A": "Option A",
+        "OPTION_B": "Option B"
     }
+    
 }

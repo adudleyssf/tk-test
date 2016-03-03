@@ -9,8 +9,30 @@ angular.module('TKServicesModule', [])
             var results = [];
             questions.forEach(function(question) {
                 //Search for questions with the specified question ID
-                if (question.Question_Number == questionID)
-                    results.push(question);
+                if (question.Question_Number == questionID) {
+
+
+
+                    var newQuestion = {};
+                    newQuestion.Question_Number = question.Question_Number;
+                    newQuestion.Answer_ID = question.Answer_ID;
+                    newQuestion.Style = question.Style;
+                    newQuestion.id = question.id;
+                 
+
+                    if (typeof navigator.globalization !== "undefined") {
+                        navigator.globalization.getPreferredLanguage(function(language) {
+                            
+                            var setLanguage = language.value;
+                               newQuestion.Text = question["Text_" + setLanguage.split("-")[0]];
+                            
+                            
+                        }, null);
+                    }
+             
+
+                    results.push(newQuestion);
+                }
             });
             return results;
         };

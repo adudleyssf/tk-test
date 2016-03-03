@@ -2,7 +2,8 @@
     "GENERAL":{
         "LOGIN": "Accesso",
         "MENU": "Menu",
-        "MYRESULTS": "I miei risultati"
+        "MYRESULTS": "I miei risultati",
+        "TEST": "Test"
         
     },
     "LANDING": {
@@ -27,9 +28,9 @@
         "INVALID_RESPONSE": "Qualcosa è andato storto, riprovare.",
         "401": "nome utente o password errati",
         "NULL": "La connessione con il server non ha avuto successo, controllare la connessione a Internet e riprovare più tardi.",
-        "ELSE": "Qualcosa è andato storto , riprovare ."
+        "ELSE": "Qualcosa è andato storto , riprovare .",
         "EMAIL_USED": "Email già in uso",
-        "NO_LOGOUT": "Impossibile il logout in questo momento , riprovare .",
+        "NO_LOGOUT": "Impossibile il logout in questo momento , riprovare ."
        
     },
       "SSFCONFIRMS": {
@@ -44,5 +45,9 @@
         "COMPROMISING": "compromettere",
         "AVOIDING": "evitando",
         "ACCOMMODATING": "Accomodante"
+    },
+     "QUESTIONS":{
+        "OPTION_A": "opzione A",
+        "OPTION_B": "opzione B"
     }
 }
