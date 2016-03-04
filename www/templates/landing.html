@@ -1,13 +1,10 @@
-<ion-view view-title= "{{'LANDING.TITLE' | translate }}">
+<ion-view view-title="{{'LANDING.TITLE' | translate }}">
     <ion-content class="padding">
         <button class="button button-block button-positive" ui-sref="login">
             {{ "GENERAL.LOGIN" | translate }}
         </button>
-         <button class="button button-block button-positive" ui-sref="register">
+        <button class="button button-block button-positive" ui-sref="register">
             {{ "LANDING.REGISTER" | translate }}
-        </button>
-        <button class="button button-block button-positive" type="submit" ion-track-tap="Login-tap" ion-track-data="{ mockData: 'User tapped Login'}">
-            Analytics
         </button>
     </ion-content>
 </ion-view>

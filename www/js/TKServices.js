@@ -10,46 +10,52 @@ angular.module('TKServicesModule', [])
             questions.forEach(function(question) {
                 //Search for questions with the specified question ID
 
-               if (ionic.Platform.isWebView()){
-                    if (question.Question_Number == questionID) {
+
+                if (question.Question_Number == questionID) {
 
 
-                        var newQuestion1 = {};
-                        newQuestion1.Question_Number = question.Question_Number;
-                        newQuestion1.Answer_ID = question.Answer_ID;
-                        newQuestion1.Style = question.Style;
-                        newQuestion1.id = question.id;
+                    var newQuestion1 = {};
+                    newQuestion1.Question_Number = question.Question_Number;
+                    newQuestion1.Answer_ID = question.Answer_ID;
+                    newQuestion1.Style = question.Style;
+                    newQuestion1.id = question.id;
 
 
-                        if (typeof navigator.globalization !== "undefined") {
-                            navigator.globalization.getPreferredLanguage(function(language) {
-
-                                var setLanguage = language.value;
-                                newQuestion1.Text = question["Text_" + setLanguage.split("-")[0]];
 
 
-                            }, null);
-                        }
+
+                    if (typeof navigator.globalization !== "undefined") {
+                        navigator.globalization.getPreferredLanguage(function(language) {
+
+                            var setLanguage = language.value;
+                            newQuestion1.Text = question["Text_" + setLanguage.split("-")[0]];
 
 
+
+                        }, null);
                         results.push(newQuestion1);
                     }
+                    else {
 
-                }
-                else {
-
-                    var newQuestion2 = {};
-                    newQuestion2.Question_Number = question.Question_Number;
-                    newQuestion2.Answer_ID = question.Answer_ID;
-                    newQuestion2.Style = question.Style;
-                    newQuestion2.id = question.id;
-                    newQuestion2.Text = question["Text_" +  $translate.use()];
+                        var newQuestion2 = {};
+                        newQuestion2.Question_Number = question.Question_Number;
+                        newQuestion2.Answer_ID = question.Answer_ID;
+                        newQuestion2.Style = question.Style;
+                        newQuestion2.id = question.id;
+                        newQuestion2.Text = question["Text_" + $translate.use()];
 
 
 
-                    //Search for questions with the specified question ID
+                        //Search for questions with the specified question ID
 
-                    results.push(newQuestion2);
+                        results.push(newQuestion2);
+
+                    }
+
+
+
+
+
                 }
 
             });

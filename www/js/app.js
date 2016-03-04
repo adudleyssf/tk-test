@@ -1,5 +1,7 @@
 // Ionic Starter App
 
+/* global Ionic*/
+
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
@@ -28,8 +30,32 @@ angular.module('starter', ['ionic','ionic.service.core',  "ionic.service.analyti
 
       $state.go("lobby");
     }
+    
+    /*
+      var deploy = new Ionic.Deploy();
+  deploy.check().then(function(hasUpdate) {
+    console.log('Ionic Deploy: Update available: ' + hasUpdate);
+    if(hasUpdate) {
+      var deploy = new Ionic.Deploy();
+  deploy.update().then(function(res) {
+    //App will automatically reload when updated successfully
+     console.log('Ionic Deploy: Update Success! ', res);
+  }, function(err) {
+    console.log('Ionic Deploy: Update error! ', err);
+  }, function(prog) {
+     console.log('Ionic Deploy: Progress... ', prog);
   });
+    }
+  }, function(err) {
+    console.error('Ionic Deploy: Unable to check for updates', err);
+  });
+  */
+  });
+  
 }])
+
+
+
 
 
 .config(function($translateProvider) {
@@ -60,6 +86,7 @@ angular.module('starter', ['ionic','ionic.service.core',  "ionic.service.analyti
       .state('landing', {
         url: '/',
         templateUrl: 'templates/landing.html',
+        controller: "LandingCtrl"
       })
       .state('login', {
         url: '/login',

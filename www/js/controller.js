@@ -1,8 +1,12 @@
+/*global Ionic */
+
 angular.module('starter.controllers', [])
     .controller('LoginCtrl', ['$scope', '$state', 'UserService', '$ionicHistory', '$window', "SSFAlertsService",
-        function($scope, $state, UserService, $ionicHistory, $window, SSFAlertsService) {
+        function($scope, $state, UserService, $ionicHistory, $window, SSFAlertsService ) {
             $scope.user = {};
             $scope.title = "Login";
+            
+            
 
             var rememberMeValue;
             if ($window.localStorage["rememberMe"] === undefined || $window.localStorage["rememberMe"] == "true") {
@@ -299,11 +303,11 @@ angular.module('starter.controllers', [])
         $scope.shouldShowButton = TKResultsButtonService.getShouldShowMenuButton();
         var answersInfo = TKAnswersService.getAnswers();
 
-      $scope.labelsTranslator = function(Competing, Collaborating, Compromising, Avoiding, Accommodating) {
+        $scope.labelsTranslator = function(Competing, Collaborating, Compromising, Avoiding, Accommodating) {
             $translate([Competing, Collaborating, Compromising, Avoiding, Accommodating])
-            .then(function(response) {
-                $scope.realLabels = [response[Competing], response[Collaborating], response[Compromising], response[Avoiding], response[Accommodating]] ;  
-            });
+                .then(function(response) {
+                    $scope.realLabels = [response[Competing], response[Collaborating], response[Compromising], response[Avoiding], response[Accommodating]];
+                });
         };
         $scope.labelsTranslator("ANSWERS.COMPETING", "ANSWERS.COLLABORATING", "ANSWERS.COMPROMISING", "ANSWERS.AVOIDING", "ANSWERS.ACCOMMODATING");
 
@@ -363,13 +367,15 @@ angular.module('starter.controllers', [])
         $scope.tests = [];
         performRequest();
         
-              if(typeof navigator.globalization !== "undefined") {
-                navigator.globalization.getPreferredLanguage(function(language) {
-                    
-                    tmhDynamicLocale.set((language.value).split("-")[0]);
-                  
-                }, null);
-            }
+      
+
+        if (typeof navigator.globalization !== "undefined") {
+            navigator.globalization.getPreferredLanguage(function(language) {
+
+                tmhDynamicLocale.set((language.value).split("-")[0]);
+
+            }, null);
+        }
 
         function performRequest() {
             ServerAnswersService.all($window.localStorage['userID'], $window.localStorage['token'])
@@ -387,8 +393,8 @@ angular.module('starter.controllers', [])
                     confirmPrompt();
                 });
         }
-        
-        
+
+
 
         function confirmPrompt() {
             SSFAlertsService.showConfirm("SSFCONFIRMS.TITLE", "SSFCONFIRMS.NO_RETRIEVE")
@@ -413,4 +419,35 @@ angular.module('starter.controllers', [])
         };
 
     }
-]);
+])
+
+.controller('LandingCtrl', ["$ionicPlatform", "$window", "SSFAlertsService", "$ionicLoading", function($ionicPlatform, $window, SSFAlertsService, $ionicLoading) {
+      $ionicPlatform.ready(function() {
+
+        var deploy = new Ionic.Deploy();
+        deploy.setChannel("dev");
+
+        deploy.check().then(function(hasUpdate) {
+
+            if (hasUpdate) {
+            SSFAlertsService.showAlert('New update', 'Starting update');
+                $ionicLoading.show({
+                    template: '<ion-spinner></ion-spinner>'
+                });
+
+                deploy.update().then(function(res) {
+                    //App will automatically reload when updated successfully
+                    $ionicLoading.hide();
+                    SSFAlertsService.showAlert("update worked", 'Update complete');
+                    $window.location.reload(true);
+                }, function(err) {
+                    SSFAlertsService.showAlert('Update Error', 'Update failed');
+                }, function(prog) {
+                    //$rootScope.$broadcast('loading:show');
+                });
+            }
+        }, function(err) {
+            SSFAlertsService.showAlert('Update error', 'Unable to do upadate.');
+        });
+    });
+}]);
