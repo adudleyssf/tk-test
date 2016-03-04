@@ -1,5 +1,5 @@
 angular.module('TKServicesModule', [])
-    .service('TKQuestionsService', function() {
+    .service('TKQuestionsService', ["$translate", function($translate) {
         var service = this;
         var questions = [];
         service.setQuestions = function(serverQuestions) {
@@ -9,37 +9,56 @@ angular.module('TKServicesModule', [])
             var results = [];
             questions.forEach(function(question) {
                 //Search for questions with the specified question ID
-                if (question.Question_Number == questionID) {
+
+               if (ionic.Platform.isWebView()){
+                    if (question.Question_Number == questionID) {
 
 
+                        var newQuestion1 = {};
+                        newQuestion1.Question_Number = question.Question_Number;
+                        newQuestion1.Answer_ID = question.Answer_ID;
+                        newQuestion1.Style = question.Style;
+                        newQuestion1.id = question.id;
 
-                    var newQuestion = {};
-                    newQuestion.Question_Number = question.Question_Number;
-                    newQuestion.Answer_ID = question.Answer_ID;
-                    newQuestion.Style = question.Style;
-                    newQuestion.id = question.id;
-                 
 
-                    if (typeof navigator.globalization !== "undefined") {
-                        navigator.globalization.getPreferredLanguage(function(language) {
-                            
-                            var setLanguage = language.value;
-                               newQuestion.Text = question["Text_" + setLanguage.split("-")[0]];
-                            
-                            
-                        }, null);
+                        if (typeof navigator.globalization !== "undefined") {
+                            navigator.globalization.getPreferredLanguage(function(language) {
+
+                                var setLanguage = language.value;
+                                newQuestion1.Text = question["Text_" + setLanguage.split("-")[0]];
+
+
+                            }, null);
+                        }
+
+
+                        results.push(newQuestion1);
                     }
-             
 
-                    results.push(newQuestion);
                 }
+                else {
+
+                    var newQuestion2 = {};
+                    newQuestion2.Question_Number = question.Question_Number;
+                    newQuestion2.Answer_ID = question.Answer_ID;
+                    newQuestion2.Style = question.Style;
+                    newQuestion2.id = question.id;
+                    newQuestion2.Text = question["Text_" +  $translate.use()];
+
+
+
+                    //Search for questions with the specified question ID
+
+                    results.push(newQuestion2);
+                }
+
             });
             return results;
         };
         service.questionsLength = function() {
             return questions.length;
         };
-    })
+    }])
     .service("TKAnswersService", function() {
         var service = this;
         var answerCategories = {

@@ -3,10 +3,14 @@
 // angular.module is a global place for creating, registering and retrieving Angular modules
 // 'starter' is the name of this angular module example (also set in a <body> attribute in index.html)
 // the 2nd parameter is an array of 'requires'
-angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TKServicesModule", "chart.js", "SSFAlerts", 'pascalprecht.translate', "tmh.dynamicLocale"])
+angular.module('starter', ['ionic', 'ionic.service.core', "ionic.service.analytics", 'starter.controllers', 'RESTConnection', "TKServicesModule", "chart.js", "SSFAlerts", 'pascalprecht.translate', "tmh.dynamicLocale"])
 
-.run(["$ionicPlatform", "$window", "$state", function($ionicPlatform, $window, $state) {
+.run(["$ionicPlatform", "$window", "$state", "$ionicAnalytics", function($ionicPlatform, $window, $state, $ionicAnalytics) {
   $ionicPlatform.ready(function() {
+    Ionic.io();
+    $ionicAnalytics.register();
+
+
 
     if (window.cordova && window.cordova.plugins.Keyboard) {
       cordova.plugins.Keyboard.hideKeyboardAccessoryBar(true);
@@ -16,30 +20,30 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
     }
 
     if ($window.localStorage["userID"] !== undefined) {
-  
+
       $ionicHistory.nextViewOptions({
         historyRoot: true,
         disableBack: true
       });
-      
+
       $state.go("lobby");
     }
   });
 }])
 
-   
+
 .config(function($translateProvider) {
-    $translateProvider
-    //Load languages files from path
+  $translateProvider
+  //Load languages files from path
     .useStaticFilesLoader({
       prefix: 'languages/',
       suffix: '.json'
-      
+
     })
-    .registerAvailableLanguageKeys(['en', 'it','ja'], {
-   'en_*': 'en',
-   'it_*': 'it',
-   'ja_*': 'ja'
+    .registerAvailableLanguageKeys(['en', 'it', 'ja'], {
+      'en_*': 'en',
+      'it_*': 'it',
+      'ja_*': 'ja'
     })
     .preferredLanguage('en')
     .determinePreferredLanguage();
@@ -97,26 +101,25 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
         templateUrl: 'templates/history.html',
         controller: 'HistoryCtrl'
       })
-       .state('navigation', {
-    url: '/navigation',
-    template:
-      '<ion-view hide-nav-bar="false">' +
-        '<ion-nav-buttons></ion-nav-buttons>' +
-        '<ion-content class="padding">' +
+      .state('navigation', {
+        url: '/navigation',
+        template: '<ion-view hide-nav-bar="false">' +
+          '<ion-nav-buttons></ion-nav-buttons>' +
+          '<ion-content class="padding">' +
           '<button class="button button-block button-calm" ng-repeat="nav in navLinks" ui-sref="{{nav}}">{{nav}}</button>' +
-        '</ion-content>' +
-      '</ion-view>',
-    controller: function($state, $scope) {
-      var stateArray = $state.get();
-      $scope.navLinks = [];
-      for(var i in stateArray) {
-        if(stateArray[i].name !== '' && stateArray[i].name !== 'navigation' && stateArray[i].name !== 'update') {
-          $scope.navLinks.push(stateArray[i].name);
+          '</ion-content>' +
+          '</ion-view>',
+        controller: function($state, $scope) {
+          var stateArray = $state.get();
+          $scope.navLinks = [];
+          for (var i in stateArray) {
+            if (stateArray[i].name !== '' && stateArray[i].name !== 'navigation' && stateArray[i].name !== 'update') {
+              $scope.navLinks.push(stateArray[i].name);
+            }
+          }
         }
-      }
-    }
-  });
-      
+      });
+
 
   }
 ])
@@ -157,5 +160,9 @@ angular.module('starter', ['ionic', 'starter.controllers', 'RESTConnection', "TK
 
 .config(function(tmhDynamicLocaleProvider) {
   tmhDynamicLocaleProvider.localeLocationPattern("lib/angular-locale/angular-locale_{{locale}}.js");
-});
+})
 
+.config(['$ionicAutoTrackProvider', function($ionicAutoTrackProvider) {
+  // Don't track which elements the user clicks on.
+  $ionicAutoTrackProvider.disableTracking('Tap');
+}]);
