@@ -18,7 +18,8 @@ angular.module('SSFAlerts', [])
         };
 
         service.showConfirm = function(title, body) {
-            $translate([title, body])
+        return   $translate([title, body])
+            
                 .then(function(response) {
                     if (navigator.notification === undefined) {
                         var confirmPopup = $ionicPopup.confirm({
